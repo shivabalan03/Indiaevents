@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IndiaEvents2ModelStoreContainer" CdmEntityContainer="IndiaEvents2Entities">
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="IndiaEvents2Model.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="EventFee" ColumnName="EventFee" />
+          <ScalarProperty Name="Events" ColumnName="Events" />
+          <ScalarProperty Name="EventFromDate" ColumnName="EventFromDate" />
+          <ScalarProperty Name="EventToDate" ColumnName="EventToDate" />
+          <ScalarProperty Name="CollegeName" ColumnName="CollegeName" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Poster" ColumnName="Poster" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lookups">
+      <EntityTypeMapping TypeName="IndiaEvents2Model.Lookup">
+        <MappingFragment StoreEntitySet="Lookups">
+          <ScalarProperty Name="lookupsId" ColumnName="lookupsId" />
+          <ScalarProperty Name="sno" ColumnName="sno" />
+          <ScalarProperty Name="lookupID" ColumnName="lookupID" />
+          <ScalarProperty Name="lookups" ColumnName="lookups" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LookupTypes">
+      <EntityTypeMapping TypeName="IndiaEvents2Model.LookupType">
+        <MappingFragment StoreEntitySet="LookupType">
+          <ScalarProperty Name="lookupID" ColumnName="lookupID" />
+          <ScalarProperty Name="lookupType1" ColumnName="lookupType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="IndiaEvents2Model.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="sno" ColumnName="sno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<br />
+@*<div class="modal" id="" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="card mb-3">
+                <img class="card-img-top" src="/Content/img/defaultEvent.png" alt="Card image cap" style="height:250px">
+                <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <button type="button" class="close" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<!-- Button trigger modal-->
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventDetails">Launch modal</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventDetails">Launch modal</button>*@
+
+<!-- Modal: modalCart -->
+<div class="modal" id="eventDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body mb-0 p-0">
+                <img src="/Content/img/defaultEvent.png" style="height:300px; width:100%" />
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="text-center"><i class="fa fa-code-branch fa-5x fa-rotate-90" style="color: #55acee"></i></p>
+                        </div>
+
+                        <div class="col-9">
+                            <p>Do you need more time to make a purchase decision?</p>
+                            <p>No pressure, your product will be waiting for you in the cart.</p>
+                        </div>
+                        <br/>
+                        <hr />
+                        <br />
+                        <div class="col-3">
+                            <p></p>
+                            <p class="text-center"><i class="fa fa-lightbulb fa-5x fa-rotate-90" style="color: #55acee"></i></p>
+                        </div>
+                        <div class="col-9">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Event Name</th>
+                                        <th>Event Co-ordinator</th>
+                                        <th>Contact Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Product 1</td>
+                                        <td>100$</td>
+                                        <td><a><i class="fas fa-times"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Product 2</td>
+                                        <td>100$</td>
+                                        <td><a><i class="fas fa-times"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Product 3</td>
+                                        <td>100$</td>
+                                        <td><a><i class="fas fa-times"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+                
+                @*<div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                    
+                </div>*@
+
+            </div>
+
+            
+            <div class="modal-footer justify-content-center flex-column flex-md-row">
+                <span class="mr-4">Social Media Links</span>
+                <div>
+                    <a type="button" class="btn-floating btn-sm btn-fb">
+                        <i class="fa fa-facebook-f"></i>
+                    </a>
+                    <a type="button" class="btn-floating btn-sm btn-tw">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a type="button" class="btn-floating btn-sm btn-gplus">
+                        <i class="fa fa-google-plus-g"></i>
+                    </a>
+                    <a type="button" class="btn-floating btn-sm btn-ins">
+                        <i class="fa fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4"
+                        data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+     </div>
+</div>
+
+
+<!-- Modal: modalCart -->
+<div class="row" id="eventsDetails">
+</div>
+@*<button type="button" class="btn purple-gradient btn-sm waves-effect waves-light eventDetailss" data-toggle="modal" data-target=".eventDetails">Event Registration</button>*@
+
+
+

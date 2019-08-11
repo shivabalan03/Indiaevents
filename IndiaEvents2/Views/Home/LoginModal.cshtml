@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LoginModal</title>
+    <style>
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1030;
+            background-color: #333333;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="modal" id="LoginModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Login / Registration </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div id="alert"></div>
+                    <div class="col-lg-12 row">
+
+                        <div class="col-lg-6">
+                            <form id="login" class="form-group">
+                                <div class="col-lg-12">
+                                    <label>User Name</label>
+                                    <input type="text" class="form-control" id="username" />
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" id="password" />
+                                </div>
+
+                                <br />
+
+                                <div class="col-lg-12">
+                                    <button type="button" id="loginSubmit" class="btn btn-sm btn-success">Submit</button>
+                                    <button type="reset" id="reset" class="btn btn-sm btn-danger">Reset</button>
+                                </div>
+                                <hr />
+                                <div class="col-lg-12">
+                                    <button type="button" class="btn purple-gradient btn-sm waves-effect waves-light pull-right" data-toggle="modal" data-target="#forgotPassword">Forgot Password</button>
+                                    <button type="button" class="btn purple-gradient btn-sm waves-effect waves-light pull-right" data-toggle="modal" data-target="#forgotPassword">Sign In Google</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-6">
+                            <form id="createUserForm" class="form-group">
+
+                                <div class="col-lg-12">
+                                    <label>User Name</label>
+                                    <input type="text" class="form-control" id="usersname" />
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <label>Mail ID</label>
+                                    <input type="text" class="form-control" id="mailid" />
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <label>Mobile Number</label>
+                                    <input type="text" class="form-control" id="mobile" />
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" id="txtpassword" />
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <label>Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirmpassword" />
+                                </div>
+                                <br />
+                                <div class="col-lg-12">
+                                    <button type="button" id="createUser" class="btn btn-sm btn-success">Create User</button>
+                                    <button type="reset" id="reset" class="btn btn-sm btn-danger">Reset</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

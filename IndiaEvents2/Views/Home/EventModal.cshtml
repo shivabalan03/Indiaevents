@@ -1,0 +1,158 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EventModal</title>
+    <style>
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1030;
+            background-color: #333333;
+            opacity: 0.8;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <div>
+        <div class="modal" id="EventModal" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="height:60px;">
+                        <h4 class="modal-title">Event Details </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div id="eventAlert" style="margin-left:20px; margin-right:60px;"></div>
+                        <div class="col-lg-12 row">
+                            <form id="createEvents" method="post" class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="col-lg-12">
+                                            <label>Event Name</label>
+                                            <input type="text" class="form-control" id="eventname" name="eventname" />
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <label>Event Type</label>
+                                            <select class="browser-default custom-select" id="eventtype" name="eventtype"></select>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <label>Event Fee</label>
+                                            <input type="number" class="form-control" id="eventfee" />
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <label>Events</label>
+                                            <div id="eventssection">
+                                                <div class="row" id="rowSection">
+                                                    @*<div class="col-lg-11 row">
+                                                        <div class="col-lg-4">
+                                                            <input type="text" class="form-control" id="event" placeholder="Event" name="event" />
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <input type="text" class="form-control" id="organisername" placeholder="Name" name="organisername" />
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <input type="text" class="form-control" id="organisermobile" placeholder="Mobile" name="organisermobile" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-1">
+                                                        <button type="button" id="subEvents" class="btn btn-sm btn-info">+</button>
+                                                    </div>*@
+
+                                                    <table class="table table-borderless table-hover">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><input type="text" class="form-control" id="event" placeholder="Event" name="event" /></td>
+                                                                <td><input type="text" class="form-control" id="organisername" placeholder="Name" name="organisername" /></td>
+                                                                <td><input type="text" class="form-control" id="organisermobile" placeholder="Mobile" name="organisermobile" /></td>
+                                                                <td><button type="button" id="subEvents" class="btn btn-sm btn-info">+</button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6" style="margin-left:-15px">
+                                                        <label>Event From</label>
+                                                        <input type="date" class="form-control" id="fromdate" name="fromdate" />
+                                                    </div>
+                                                    <div class="col-lg-6" style="margin-left:15px;">
+                                                        <label>Event To</label>
+                                                        <input type="Date" class="form-control" id="todate" name="todate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label>Website URL</label>
+                                            <input type="text" class="form-control" id="websiteurl" name="websiteurl" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="col-lg-12">
+                                            <label>College Name</label>
+                                            <input type="text" class="form-control" id="collegename" name="collegename" />
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <label>Department / Domain</label>
+                                            <input type="text" class="form-control" id="department" name="department" />
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>City</label>
+                                                    <input type="text" class="form-control" id="city" name="city" />
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label>State</label>
+                                                    <input type="text" class="form-control" id="state" name="state" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <label>Complate Address</label>
+                                            <textarea rows="3" cols="6" id="address" class="form-control" name="address"></textarea>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <label>Poster</label>
+                                            <input type="file" id="poster" class="form-control" name="poster" />
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <button type="button" id="createEvent" class="btn btn-sm btn-success">Create Event</button>
+                                            <button type="reset" id="reset" class="btn btn-sm btn-danger">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

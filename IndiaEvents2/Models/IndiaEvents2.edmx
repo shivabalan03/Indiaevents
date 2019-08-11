@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IndiaEvents2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventName" Type="varchar" MaxLength="30" />
+          <Property Name="EventType" Type="varchar" MaxLength="30" />
+          <Property Name="EventFee" Type="int" />
+          <Property Name="Events" Type="varchar(max)" />
+          <Property Name="EventFromDate" Type="date" />
+          <Property Name="EventToDate" Type="date" />
+          <Property Name="CollegeName" Type="varchar" MaxLength="45" />
+          <Property Name="Department" Type="varchar" MaxLength="30" />
+          <Property Name="City" Type="varchar" MaxLength="30" />
+          <Property Name="State" Type="varchar" MaxLength="30" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Poster" Type="varbinary(max)" />
+          <Property Name="Website" Type="varchar" MaxLength="30" />
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lookups">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lookupID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="lookups" Type="varchar" MaxLength="100" />
+          <Property Name="lookupsId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="LookupType">
+          <Key>
+            <PropertyRef Name="lookupID" />
+          </Key>
+          <Property Name="lookupID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="lookupType" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
+          <Property Name="mobile" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__Lookups__lookupI__15502E78">
+          <End Role="LookupType" Type="Self.LookupType" Multiplicity="1" />
+          <End Role="Lookups" Type="Self.Lookups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupType">
+              <PropertyRef Name="lookupID" />
+            </Principal>
+            <Dependent Role="Lookups">
+              <PropertyRef Name="lookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IndiaEvents2ModelStoreContainer">
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lookups" EntityType="Self.Lookups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookupType" EntityType="Self.LookupType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Lookups__lookupI__15502E78" Association="Self.FK__Lookups__lookupI__15502E78">
+            <End Role="LookupType" EntitySet="LookupType" />
+            <End Role="Lookups" EntitySet="Lookups" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IndiaEvents2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EventType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EventFee" Type="Int32" />
+          <Property Name="Events" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EventFromDate" Type="DateTime" Precision="0" />
+          <Property Name="EventToDate" Type="DateTime" Precision="0" />
+          <Property Name="CollegeName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Poster" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Website" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Lookup">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lookupID" Type="Guid" Nullable="false" />
+          <Property Name="lookups" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LookupType" Relationship="Self.FK__Lookups__lookupI__15502E78" FromRole="Lookups" ToRole="LookupType" />
+          <Property Name="lookupsId" Type="Guid" />
+        </EntityType>
+        <EntityType Name="LookupType">
+          <Key>
+            <PropertyRef Name="lookupID" />
+          </Key>
+          <Property Name="lookupID" Type="Guid" Nullable="false" />
+          <Property Name="lookupType1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Lookups" Relationship="Self.FK__Lookups__lookupI__15502E78" FromRole="LookupType" ToRole="Lookups" />
+        </EntityType>
+        <Association Name="FK__Lookups__lookupI__15502E78">
+          <End Role="LookupType" Type="Self.LookupType" Multiplicity="1" />
+          <End Role="Lookups" Type="Self.Lookup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupType">
+              <PropertyRef Name="lookupID" />
+            </Principal>
+            <Dependent Role="Lookups">
+              <PropertyRef Name="lookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IndiaEvents2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="Lookups" EntityType="Self.Lookup" />
+          <EntitySet Name="LookupTypes" EntityType="Self.LookupType" />
+          <AssociationSet Name="FK__Lookups__lookupI__15502E78" Association="Self.FK__Lookups__lookupI__15502E78">
+            <End Role="LookupType" EntitySet="LookupTypes" />
+            <End Role="Lookups" EntitySet="Lookups" />
+          </AssociationSet>
+          <EntitySet Name="users" EntityType="IndiaEvents2Model.user" />
+        </EntityContainer>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IndiaEvents2ModelStoreContainer" CdmEntityContainer="IndiaEvents2Entities">
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="IndiaEvents2Model.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="EventFee" ColumnName="EventFee" />
+                <ScalarProperty Name="Events" ColumnName="Events" />
+                <ScalarProperty Name="EventFromDate" ColumnName="EventFromDate" />
+                <ScalarProperty Name="EventToDate" ColumnName="EventToDate" />
+                <ScalarProperty Name="CollegeName" ColumnName="CollegeName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Poster" ColumnName="Poster" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lookups">
+            <EntityTypeMapping TypeName="IndiaEvents2Model.Lookup">
+              <MappingFragment StoreEntitySet="Lookups">
+                <ScalarProperty Name="lookupsId" ColumnName="lookupsId" />
+                <ScalarProperty Name="sno" ColumnName="sno" />
+                <ScalarProperty Name="lookupID" ColumnName="lookupID" />
+                <ScalarProperty Name="lookups" ColumnName="lookups" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookupTypes">
+            <EntityTypeMapping TypeName="IndiaEvents2Model.LookupType">
+              <MappingFragment StoreEntitySet="LookupType">
+                <ScalarProperty Name="lookupID" ColumnName="lookupID" />
+                <ScalarProperty Name="lookupType1" ColumnName="lookupType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="IndiaEvents2Model.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="sno" ColumnName="sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

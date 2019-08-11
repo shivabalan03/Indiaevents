@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/mdbcss")
+    @Scripts.Render("~/bundles/mdbjquery")
+    <link href="~/Content/fontawesome/styles.min.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <div class="navbar navbar-inverse navbar-fixed-top fixed-top" style="background:white">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                @Html.ActionLink("India Events", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="pull-right">
+                <button type="button" class="btn purple-gradient btn-sm waves-effect waves-light" data-toggle="modal" data-target="#EventModal">Event Registration</button>
+
+                <span id="loginInfo">
+                    <button type='button' class='btn purple-gradient btn-sm waves-effect waves-light' data-toggle='modal' data-target='#LoginModal' id='login'>Login</button>
+
+                </span>
+                <button type="button" id="testing">Mail</button>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("LoginModal")
+    @Html.Partial("EventModal")
+    <br /><br /><br />
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/ManualScripts/common.js"></script>
+    <script src="~/Scripts/ManualScripts/LoginModal.js"></script>
+    <script src="~/Scripts/ManualScripts/EventModal.js"></script>
+    <script src="~/Scripts/ManualScripts/Home.js"></script>
+    <script src="~/Scripts/ManualScripts/Message.js"></script>
+</body>
+</html>
