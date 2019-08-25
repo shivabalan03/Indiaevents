@@ -50,5 +50,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="loginHistories">
+      <EntityTypeMapping TypeName="IndiaEvents2Model.loginHistory">
+        <MappingFragment StoreEntitySet="loginHistory">
+          <ScalarProperty Name="authToken" ColumnName="authToken" />
+          <ScalarProperty Name="loginHistory1" ColumnName="loginHistory" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -26,32 +26,7 @@ namespace IndiaEvents2.Models
         public string State { get; set; }
         public string Address { get; set; }
         public byte[] Poster { get; set; }
-        //public dynamic Poster { get; set; }
-        public string Website { get; set; }
-        public int EventID { get; set; }
-    }
-
-    public class subevents
-    {
-        public string eventName { get; set; }
-        public string personName { get; set; }
-        public string personMobile { get; set; }
-    }
-
-    public partial class Evento
-    {
-        public string EventName { get; set; }
-        public string EventType { get; set; }
-        public Nullable<int> EventFee { get; set; }
-        public IEnumerable<subevents> Events { get; set; }
-        public Nullable<System.DateTime> EventFromDate { get; set; }
-        public Nullable<System.DateTime> EventToDate { get; set; }
-        public string CollegeName { get; set; }
-        public string Department { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Address { get; set; }
-        public dynamic Poster { get; set; }
+        public string Posters { get; set; }
         public string Website { get; set; }
         public int EventID { get; set; }
     }

@@ -60,7 +60,7 @@ namespace messageSystem
                 //smtp.Host = "smtp.gmail.com"; //for gmail host  
                 //smtp.EnableSsl = true;
                 //smtp.UseDefaultCredentials = false;
-                //smtp.Credentials = new NetworkCredential("shivabalan03@gmail.com", "Shiva@12345");
+                //smtp.Credentials = new NetworkCredential();
                 //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 //smtp.Send(message);
 
@@ -83,7 +83,7 @@ namespace messageSystem
                         smtp.EnableSsl = true;
                         smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                         smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new System.Net.NetworkCredential("shivabalan03@gmail.com", "Shiva@12345");
+                        smtp.Credentials = new System.Net.NetworkCredential("shivabalan03@gmail.com", "XXXXXXX");
                         smtp.Send(mail);
                         //message = "Mail Send Successfully..!";
                     }

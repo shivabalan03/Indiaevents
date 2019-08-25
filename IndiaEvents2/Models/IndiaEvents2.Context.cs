@@ -29,5 +29,6 @@ namespace IndiaEvents2.Models
         public virtual DbSet<Lookup> Lookups { get; set; }
         public virtual DbSet<LookupType> LookupTypes { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<loginHistory> loginHistories { get; set; }
     }
 }

@@ -51,6 +51,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -185,6 +186,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IndiaEvents2.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\loginHistory.cs">
+      <DependentUpon>IndiaEvents2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Lookup.cs">
       <DependentUpon>IndiaEvents2.tt</DependentUpon>
     </Compile>
@@ -196,6 +200,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="userSecurity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -431,6 +436,8 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\LoginModal.cshtml" />
     <Content Include="Views\Home\EventModal.cshtml" />
+    <Content Include="Views\Home\btnLogin.cshtml" />
+    <Content Include="Views\Home\btnLogout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -450,6 +457,9 @@
       <Project>{1ae4bd13-0665-4a8e-ad35-91e8816964e5}</Project>
       <Name>Message</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

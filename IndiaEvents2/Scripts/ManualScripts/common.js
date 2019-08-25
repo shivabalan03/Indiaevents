@@ -49,7 +49,40 @@ function dateValidate(id) {
 
 $('#eventDetails').on('shown.bs.modal', function (e) {
     var eventID = $()
-})
+});
+
+function validateUser(username) {
+    $.ajax({
+        url: '/Home/validateUser',
+        type: "GET",
+        dataType:"json",
+        headers: {
+            "Authorization" : "Basic "+ btoa(username)
+        },
+        success: function (result) {
+            if (result) {
+                $("#modalEventDetails").modal("show");
+            } else {
+                $("#alert").html(customAlert("Please login", "danger"));
+                $('#LoginModal').modal('show');
+                $("#signInReset").trigger("click");
+                $("#RegisterReset").trigger("click");
+            }
+        },
+        error: function (err) {
+            alert(err.statusText);
+        }
+    });
+}
+
+$('#EventModal').click(function () {
+    var userName = window.localStorage.getItem("userName");
+    if (userName != null) {
+        validateUser(userName);
+    } else {
+
+    }
+});
 
 
 
@@ -113,15 +146,15 @@ function serverCall(url, type, obj, bindType, id) {
                     $(id).html(dropDown);
                 }
             } else if (bindType == "alert") {
-                $("#alert").html(customAlert(result.responseJSON.message, "success"));
                 if (result.responseJSON.message == "Logged In successfully..!") {
-                    //$("#logout").css("display", "");
-                    //$("#login").css("display", "none");
+                    $("#alert").html(customAlert(result.responseJSON.message, "success"));
                 } else if (result.responseJSON.message == "Logout successfully..!") {
-                    //$("#logout").css("display", "none");
-                    //$("#login").css("display", "");
+                    $("#alert").html(customAlert(result.responseJSON.message, "success"));
                 } else if (result.responseJSON.message == "Event Create Successfully..!") {
+                    $("#alert").html(customAlert(result.responseJSON.message, "success"));
                     storeImage(result.responseJSON.eventID);
+                } else if (result.responseJSON.message == "Please check your credentials..!") {
+                    $("#alert").html(customAlert(result.responseJSON.message, "danger"));
                 }
                 $("#loginInfo").html(result.responseJSON.htmlContent);
             } else if (bindType == "showEvents") {
@@ -132,7 +165,7 @@ function serverCall(url, type, obj, bindType, id) {
                     //if (b.Poster != "") {
                     //    $("#divImageHolder").html(imag)
                     //}
-                    eventHTML += bindEvent(b.Poster, b.EventName, b.Website, "", "", b.EventID)
+                    eventHTML += bindEvent(b.Posters, b.EventName, b.Website, "", "", b.EventID)
                     });
                     $("#eventsDetails").html(eventHTML);
                 //}

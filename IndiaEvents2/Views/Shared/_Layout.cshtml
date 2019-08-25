@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
     @Styles.Render("~/Content/mdbcss")
     @Scripts.Render("~/bundles/mdbjquery")
     <link href="~/Content/fontawesome/styles.min.css" rel="stylesheet" />
@@ -16,7 +19,8 @@
                 @Html.ActionLink("India Events", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="pull-right">
-                <button type="button" class="btn purple-gradient btn-sm waves-effect waves-light" data-toggle="modal" data-target="#EventModal">Event Registration</button>
+                @*<button type="button" class="btn purple-gradient btn-sm waves-effect waves-light" data-toggle="modal" data-target="#EventModal">Event Registration</button>*@
+                <button type="button" class="btn purple-gradient btn-sm waves-effect waves-light" data-toggle="modal" id="EventModal">Event Registration</button>
 
                 <span id="loginInfo">
                     <button type='button' class='btn purple-gradient btn-sm waves-effect waves-light' data-toggle='modal' data-target='#LoginModal' id='login'>Login</button>

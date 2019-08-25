@@ -21,9 +21,7 @@ $(document).ready(function () {
         }
     }
 
-    function Logout() {
-        serverCall('Home/Logout', 'POST', '{}', 'alert');
-    }
+    
 
     function CreateUser() {
         var userName = $("#usersname").val();
@@ -66,13 +64,16 @@ $(document).ready(function () {
                 CreateUser();
                 break;
             case "logout":
-                Logout();
+                
                 break;
         }
     });
-
-    
-
-    
-    
 })
+
+$(document).on('click', "#logout", function () {
+    function Logout() {
+        serverCall('Home/Logout', 'POST', '{}', 'alert');
+    }
+
+    Logout();
+});

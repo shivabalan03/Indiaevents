@@ -8,6 +8,9 @@ using IndiaEvents2.Models;
 using Newtonsoft.Json;
 using System.IO;
 using messageSystem;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading;
 
 namespace IndiaEvents2.Controllers
 {
@@ -34,14 +37,37 @@ namespace IndiaEvents2.Controllers
 
     public class HomeController : Controller
     {
+        [HttpGet]
+        [userSecurity]
+        public JsonResult validateUser()
+        {
+            bool isValidUser = false;
+            if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
+            {
+                isValidUser = true;
+            }
+            return Json(isValidUser, JsonRequestBehavior.AllowGet);
+        }
+
         //private readonly MvcControllerFactoryEntities _context;
+        [userSecurity]
         public ActionResult Index()
         {
-            //response message = new response();
-            //message.message = "Logout successfully..!";
-            //message.htmlContent = "<button type='button' class='btn purple-gradient btn-sm waves-effect waves-light' data-toggle='modal' data-target='#LoginModal' id='login'>Login</button>";
-            //return Json(message, JsonRequestBehavior.AllowGet);
-            return View();
+            response message = new response();
+            string view = "";
+            if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
+            {
+                //message.message = "";
+                //message.htmlContent = "<button id='logout' class='btn btn-info btn-rounded btn-sm waves-effect waves-light'>Log Out<i class='fas fa-sign-out-alt'></i></button>";
+                view = @"~/Views/Home/btnLogout.cshtml";
+            }
+            else
+            {   
+                //message.message = "";
+                //message.htmlContent = "<button type='button' class='btn purple-gradient btn-sm waves-effect waves-light' data-toggle='modal' data-target='#LoginModal' id='login'>Login</button>";
+                view = @"~/Views/Home/btnLogin.cshtml";
+            }
+            return PartialView(view); // Content(message.htmlContent);// View();// Json(message, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()
@@ -58,25 +84,70 @@ namespace IndiaEvents2.Controllers
             return View();
         }
 
+        //public string GenerateToken(int maxSize = 15)
+        //{
+        //    char[] chars = new char[62];
+        //    chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+        //    byte[] data = new byte[1];
+        //    using (RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider())
+        //    {
+        //        crypto.GetNonZeroBytes(data);
+        //        data = new byte[maxSize];
+        //        crypto.GetNonZeroBytes(data);
+        //    }
+        //    StringBuilder result = new StringBuilder(maxSize);
+        //    foreach (byte b in data)
+        //    {
+        //        result.Append(chars[b % (chars.Length)]);
+        //    }
+        //    return result.ToString();
+        //}
+
+        public JsonResult Authendicate(user us)
+        {
+            IndiaEvents2Entities e = new IndiaEvents2Entities();
+            loginHistory lh = new loginHistory();
+            lh.userID = us.sno;
+            lh.loginHistory1 = DateTime.Now;
+            lh.authTokens = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            e.loginHistories.Add(lh);
+
+            byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
+            byte[] key = Guid.NewGuid().ToByteArray();
+            string token = Convert.ToBase64String(time.Concat(key).ToArray());
+
+            byte[] data = Convert.FromBase64String(token);
+            DateTime when = DateTime.FromBinary(BitConverter.ToInt64(data, 0));
+            if (when < DateTime.UtcNow.AddHours(-24))
+            {
+                // too old
+            }
+
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult Login(user user)
         {
             IndiaEvents2Entities ie = new IndiaEvents2Entities();
             user userDetails = (from u in ie.users
                             where u.userName == user.userName && u.password == user.password
                             select u).SingleOrDefault();
+            response message = new response();
+            message.message = "Please check your credentials..!";
+            message.htmlContent = "<button type='button' class='btn purple-gradient btn-sm waves-effect waves-light' data-toggle='modal' data-target='#LoginModal' id='login'>Login</button>";
             if (userDetails != null)
             {
                 FormsAuthentication.SetAuthCookie(user.userName, true);
+                message.message = "Logged In successfully..!";
+                message.htmlContent = "<button id='logout' class='btn btn-info btn-rounded btn-sm waves-effect waves-light'>Log Out<i class='fas fa-sign-out-alt'></i></button>";
             }
-            response message = new response();
-            message.message = "Logged In successfully..!";
-            message.htmlContent = "<button id='logout' class='btn btn-info btn-rounded btn-sm waves-effect waves-light'>Log Out<i class='fas fa-sign-out-alt'></i></button>";
             return Json(message, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Logout()
         {
             FormsAuthentication.SignOut();
+            Session.Clear();
             response message = new response();
             message.message = "Logout successfully..!";
             message.htmlContent = "<button type='button' class='btn purple-gradient btn-sm waves-effect waves-light' data-toggle='modal' data-target='#LoginModal' id='login'>Login</button>";
@@ -133,7 +204,7 @@ namespace IndiaEvents2.Controllers
 
         [Authorize]
         [HttpPost]
-        public JsonResult PostEvent(Evento eventDetails)
+        public JsonResult PostEvent(Event eventDetails)
         {
             //HttpFileCollectionBase files = eventDetails.Poster;
             //HttpPostedFileBase file = files[0];
@@ -173,8 +244,6 @@ namespace IndiaEvents2.Controllers
             
             return Json(message, JsonRequestBehavior.AllowGet);
         }
-
-        
 
         public JsonResult getEventsTypes()
         {
@@ -232,37 +301,18 @@ namespace IndiaEvents2.Controllers
 
         public JsonResult showEvents()
         {
-            // public string EventName { get; set; }
-            //public string EventType { get; set; }
-            //public Nullable<int> EventFee { get; set; }
-            //public IEnumerable<subevents> Events { get; set; }
-            //public Nullable<System.DateTime> EventFromDate { get; set; }
-            //public Nullable<System.DateTime> EventToDate { get; set; }
-            //public string CollegeName { get; set; }
-            //public string Department { get; set; }
-            //public string City { get; set; }
-            //public string State { get; set; }
-            //public string Address { get; set; }
-            //public dynamic Poster { get; set; }
-            //public string Website { get; set; }
-            //public int EventID { get; set; }
-
             IndiaEvents2Entities e = new IndiaEvents2Entities();
             List<Event> en = new List<Event>();
-            List<Evento> eve = new List<Evento>();
+            List<Event> eve = new List<Event>();
 
             en = (from q in e.Events select q).OrderBy(x => x.EventFromDate).ToList();
 
             foreach (var ev in en)
             {
-                Evento ee = new Evento();
+                Event ee = new Event();
                 ee.EventName = ev.EventName;
                 ee.EventType = ev.EventType;
                 ee.EventFee = ev.EventFee;
-
-                //List<subevents> se = new List<subevents>();
-                //se = JsonConvert.DeserializeObject(ev.Events);
-                //ee.Events = ev.Events //ev.Events.ToString();
 
                 ee.EventFromDate = ev.EventFromDate;
                 ee.EventToDate = ev.EventToDate;
@@ -273,7 +323,7 @@ namespace IndiaEvents2.Controllers
                 ee.Address = ev.Address;
                 if (ev.Poster != null)
                 {
-                    ee.Poster = "data:image/jpeg;base64," + Convert.ToBase64String(ev.Poster);
+                    ee.Posters = "data:image/jpeg;base64," + Convert.ToBase64String(ev.Poster);
                 }
                 ee.Website = ev.Website;
                 ee.EventID = ev.EventID;

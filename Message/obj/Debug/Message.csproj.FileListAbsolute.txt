@@ -3,4 +3,3 @@ C:\Users\User\documents\visual studio 2013\Projects\IndiaEvents2\Message\bin\Deb
 C:\Users\User\documents\visual studio 2013\Projects\IndiaEvents2\Message\bin\Debug\Message.pdb
 C:\Users\User\documents\visual studio 2013\Projects\IndiaEvents2\Message\obj\Debug\Message.exe
 C:\Users\User\documents\visual studio 2013\Projects\IndiaEvents2\Message\obj\Debug\Message.pdb
-C:\Users\User\documents\visual studio 2013\Projects\IndiaEvents2\Message\obj\Debug\Message.csprojResolveAssemblyReference.cache

@@ -19,6 +19,15 @@
     <Property Name="Website" Type="varchar" MaxLength="30" />
     <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
+  <EntityType Name="loginHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" />
+    <Property Name="loginHistory" Type="datetime" />
+    <Property Name="authToken" Type="varbinary" MaxLength="1" />
+  </EntityType>
   <EntityType Name="Lookups">
     <Key>
       <PropertyRef Name="sno" />
@@ -59,6 +68,7 @@
   </Association>
   <EntityContainer Name="IndiaEvents2ModelStoreContainer">
     <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="loginHistory" EntityType="Self.loginHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Lookups" EntityType="Self.Lookups" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LookupType" EntityType="Self.LookupType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />

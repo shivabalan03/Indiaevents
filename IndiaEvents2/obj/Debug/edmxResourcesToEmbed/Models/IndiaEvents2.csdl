@@ -58,6 +58,7 @@
       <End Role="Lookups" EntitySet="Lookups" />
     </AssociationSet>
     <EntitySet Name="users" EntityType="IndiaEvents2Model.user" />
+    <EntitySet Name="loginHistories" EntityType="IndiaEvents2Model.loginHistory" />
   </EntityContainer>
   <EntityType Name="user">
     <Key>
@@ -68,5 +69,14 @@
     <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="loginHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" />
+    <Property Name="loginHistory1" Type="DateTime" Precision="3" />
+    <Property Name="authToken" Type="Binary" MaxLength="1" FixedLength="false" />
   </EntityType>
 </Schema>
